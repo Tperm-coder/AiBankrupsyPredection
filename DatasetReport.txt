@@ -2,79 +2,79 @@ Number of rows is : 10174
 Number of columns is : 65
 Number of cells is : 661310
 
-Duplicated rows count is : 90
-Percentage of duplicated_rows  : 0.8846078238647532 %
+Duplicated rows count is : 4717
+Percentage of duplicated_rows  : 46.36327894633379 %
 
-Number of rows that have empty cells is  : 6085
-Percentage of rows that have empty cells is : 59.809317869078036 %
+Number of rows that have empty cells is  : 4518
+Percentage of rows that have empty cells is : 44.40731275801061 %
 
-Empty cell count is : 12157
-Percentage of empty cells is : 1.8383209084997958 %
+Empty cell count is : 4518
+Percentage of empty cells is : 0.6831894270463171 %
 
 Number of empty rows is  : 0
 
-Col No. 37 has 4518 empty cells
-Col No. 21 has 3164 empty cells
-Col No. 27 has 706 empty cells
-Col No. 60 has 543 empty cells
-Col No. 45 has 541 empty cells
-Col No. 24 has 225 empty cells
-Col No. 28 has 212 empty cells
-Col No. 53 has 212 empty cells
-Col No. 54 has 212 empty cells
-Col No. 64 has 212 empty cells
-Col No. 41 has 197 empty cells
-Col No. 32 has 87 empty cells
-Col No. 47 has 74 empty cells
-Col No. 52 has 74 empty cells
-Col No. 19 has 64 empty cells
-Col No. 13 has 63 empty cells
-Col No. 20 has 63 empty cells
-Col No. 23 has 63 empty cells
-Col No. 30 has 63 empty cells
-Col No. 31 has 63 empty cells
-Col No. 39 has 63 empty cells
-Col No. 42 has 63 empty cells
-Col No. 43 has 63 empty cells
-Col No. 44 has 63 empty cells
-Col No. 49 has 63 empty cells
-Col No. 56 has 63 empty cells
-Col No. 62 has 63 empty cells
-Col No. 58 has 39 empty cells
-Col No. 5 has 24 empty cells
-Col No. 4 has 22 empty cells
-Col No. 12 has 22 empty cells
-Col No. 33 has 22 empty cells
-Col No. 40 has 22 empty cells
-Col No. 46 has 22 empty cells
-Col No. 63 has 22 empty cells
-Col No. 16 has 19 empty cells
-Col No. 26 has 19 empty cells
-Col No. 8 has 18 empty cells
-Col No. 17 has 18 empty cells
-Col No. 34 has 18 empty cells
-Col No. 50 has 18 empty cells
-Col No. 61 has 16 empty cells
-Col No. 15 has 12 empty cells
-Col No. 9 has 4 empty cells
-Col No. 48 has 2 empty cells
-Col No. 57 has 2 empty cells
-Col No. 59 has 2 empty cells
-Col No. 1 has 1 empty cells
-Col No. 2 has 1 empty cells
-Col No. 3 has 1 empty cells
-Col No. 6 has 1 empty cells
-Col No. 7 has 1 empty cells
-Col No. 10 has 1 empty cells
-Col No. 11 has 1 empty cells
-Col No. 14 has 1 empty cells
-Col No. 18 has 1 empty cells
-Col No. 22 has 1 empty cells
-Col No. 25 has 1 empty cells
-Col No. 29 has 1 empty cells
-Col No. 35 has 1 empty cells
-Col No. 36 has 1 empty cells
-Col No. 38 has 1 empty cells
-Col No. 51 has 1 empty cells
-Col No. 55 has 1 empty cells
+Col No. 1 has 4518 empty cells
+Col No. 2 has 0 empty cells
+Col No. 3 has 0 empty cells
+Col No. 4 has 0 empty cells
+Col No. 5 has 0 empty cells
+Col No. 6 has 0 empty cells
+Col No. 7 has 0 empty cells
+Col No. 8 has 0 empty cells
+Col No. 9 has 0 empty cells
+Col No. 10 has 0 empty cells
+Col No. 11 has 0 empty cells
+Col No. 12 has 0 empty cells
+Col No. 13 has 0 empty cells
+Col No. 14 has 0 empty cells
+Col No. 15 has 0 empty cells
+Col No. 16 has 0 empty cells
+Col No. 17 has 0 empty cells
+Col No. 18 has 0 empty cells
+Col No. 19 has 0 empty cells
+Col No. 20 has 0 empty cells
+Col No. 21 has 0 empty cells
+Col No. 22 has 0 empty cells
+Col No. 23 has 0 empty cells
+Col No. 24 has 0 empty cells
+Col No. 25 has 0 empty cells
+Col No. 26 has 0 empty cells
+Col No. 27 has 0 empty cells
+Col No. 28 has 0 empty cells
+Col No. 29 has 0 empty cells
+Col No. 30 has 0 empty cells
+Col No. 31 has 0 empty cells
+Col No. 32 has 0 empty cells
+Col No. 33 has 0 empty cells
+Col No. 34 has 0 empty cells
+Col No. 35 has 0 empty cells
+Col No. 36 has 0 empty cells
+Col No. 37 has 0 empty cells
+Col No. 38 has 0 empty cells
+Col No. 39 has 0 empty cells
+Col No. 40 has 0 empty cells
+Col No. 41 has 0 empty cells
+Col No. 42 has 0 empty cells
+Col No. 43 has 0 empty cells
+Col No. 44 has 0 empty cells
+Col No. 45 has 0 empty cells
+Col No. 46 has 0 empty cells
+Col No. 47 has 0 empty cells
+Col No. 48 has 0 empty cells
+Col No. 49 has 0 empty cells
+Col No. 50 has 0 empty cells
+Col No. 51 has 0 empty cells
+Col No. 52 has 0 empty cells
+Col No. 53 has 0 empty cells
+Col No. 54 has 0 empty cells
+Col No. 55 has 0 empty cells
+Col No. 56 has 0 empty cells
+Col No. 57 has 0 empty cells
+Col No. 58 has 0 empty cells
+Col No. 59 has 0 empty cells
+Col No. 60 has 0 empty cells
+Col No. 61 has 0 empty cells
+Col No. 62 has 0 empty cells
+Col No. 63 has 0 empty cells
+Col No. 64 has 0 empty cells
 Col No. 65 has 0 empty cells
