@@ -1,15 +1,6 @@
 import pandas as pd
-from sklearn.model_selection import train_test_split
-from sklearn.tree import DecisionTreeClassifier
-from sklearn.metrics import accuracy_score
-from sklearn import tree
-from sklearn import metrics
-from sklearn.linear_model import LogisticRegression
-from sklearn.preprocessing import MinMaxScaler
-from sklearn.preprocessing import StandardScaler
-from sklearn import svm
+import sklearn as sklearn
 import os
-
 constant_random_state = 42
 
 def apply_linear_regression(x_train,y_train,x_test,y_test) :
