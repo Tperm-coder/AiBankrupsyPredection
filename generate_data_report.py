@@ -76,8 +76,8 @@ report_string += ("Number of rows is : " + str(len(data)) + '\n')
 report_string += ("Number of columns is : 65") + '\n'
 report_string += ("Number of cells is : " + str(cells_count)) + '\n\n'
 
-report_string += ("Number of 1s in the class : " + str(len(ones_count)) + '\n')
-report_string += ("Number of 0s in the class : ") + str(len(zeros_count)) + '\n\n'
+report_string += ("Number of 1s in the class : " + str((ones_count)) + '\n')
+report_string += ("Number of 0s in the class : ") + str((zeros_count)) + '\n\n'
 
 report_string += ("Duplicated rows count is : " + str(duplicated_row)) + '\n'
 report_string += ("Percentage of duplicated_rows  : " + str((duplicated_row/len(data))*100) + ' %\n\n')

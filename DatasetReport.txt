@@ -2,6 +2,9 @@ Number of rows is : 10173
 Number of columns is : 65
 Number of cells is : 661245
 
+Number of 1s in the class : 399
+Number of 0s in the class : 9774
+
 Duplicated rows count is : 0
 Percentage of duplicated_rows  : 0.0 %
 
