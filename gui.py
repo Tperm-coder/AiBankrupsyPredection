@@ -1,7 +1,26 @@
 import PySimpleGUI as pg
 
+file = open("results.txt" , 'r')
+data = file.read()
+file.close()
+
+data = data.split('\n')
+for i in range(len(data)) :
+    data[i] = data[i].split(',')
+
+LRb = data[0][0]
+LRa = data[0][1]
+
+DTb = data[1][0]
+DTa = data[1][1]
+
+SVMb = data[2][0]
+SVMa = data[2][1]
+
 pg.theme("DarkAmber")
-accuracy = '_'
+
+accuracyb = '_'
+accuracya = '_'
 
 font = ("Arial", 18)
 
@@ -12,7 +31,8 @@ layout = [
     [pg.Radio('SVM', 1, enable_events=True, key='SVM')],
     [pg.Radio('DT', 1, enable_events=True, key='DT')],
     [pg.Text("\n") ],
-    [pg.Text("Accuracy : " + str(accuracy))],
+    [pg.Text("Accuracy before normalization: " + str(accuracyb) , key = 'accuracyb')],
+    [pg.Text("Accuracy after normalization: " + str(accuracya) , key = 'accuracya')],
 ]
 
 
@@ -27,15 +47,20 @@ while True :
 
     if (event == "LR" and curr_choice != "LR") :
         curr_choice = "LR"
-        print("LR")
+        window['accuracyb'].update(value = "Accuracy before normalization: " + str(LRb))
+        window['accuracya'].update(value = "Accuracy after normalization: " + str(LRa))
 
     elif (event == "SVM" and curr_choice != "SVM") :
         curr_choice = "SVM"
-        print("SVM")
+        window['accuracyb'].update(value = "Accuracy before normalization: " + str(SVMb))
+        window['accuracya'].update(value = "Accuracy after normalization: " + str(SVMa))
+
 
     elif (event == "DT" and curr_choice != "DT") :
         curr_choice = "DT"
-        print("DT")
+        window['accuracyb'].update(value = "Accuracy before normalization: " + str(DTb))
+        window['accuracya'].update(value = "Accuracy after normalization: " + str(DTa))
+
 
 
 window.close()

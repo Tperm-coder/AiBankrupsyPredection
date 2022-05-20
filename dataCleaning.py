@@ -21,7 +21,6 @@ undefinedCharactersCount.to_csv("cleanedData/undefinedCharactersCount.csv")
 # Dropping columns with high count of undefined characters 
 df.drop(df.columns[[21, 37]], axis = 1, inplace = True)
 
-
 # replace undefined characters with the column mean
 for col in df :
     df[col] = df[col].replace('?',  np.mean(pd.to_numeric(df[col], errors='coerce')))

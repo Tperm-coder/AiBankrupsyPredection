@@ -23,6 +23,9 @@ empty_cells_count = 0
 rows_with_empty_cell_count = 0
 empty_rows_count = 0
 
+ones_count = 0
+zeros_count = 0
+
 row_set = set()
 map_col_empty_cells_count = {}
 
@@ -45,6 +48,11 @@ for row in range(len(data)) :
         empty_rows_count += 1
 
     row = data[row].split(',')
+    if (row[-1] == "1") :
+        ones_count += 1
+    else :
+        zeros_count += 1
+
     row_set.add(','.join(row))
 
     contains_empty_cell = False
@@ -59,7 +67,6 @@ for row in range(len(data)) :
         rows_with_empty_cell_count += 1;
 
 
-
 duplicated_row = len(data) - len(row_set)
 cells_count = len(data) * 65
 
@@ -68,6 +75,9 @@ report_string = ""
 report_string += ("Number of rows is : " + str(len(data)) + '\n')
 report_string += ("Number of columns is : 65") + '\n'
 report_string += ("Number of cells is : " + str(cells_count)) + '\n\n'
+
+report_string += ("Number of 1s in the class : " + str(len(ones_count)) + '\n')
+report_string += ("Number of 0s in the class : ") + str(len(zeros_count)) + '\n\n'
 
 report_string += ("Duplicated rows count is : " + str(duplicated_row)) + '\n'
 report_string += ("Percentage of duplicated_rows  : " + str((duplicated_row/len(data))*100) + ' %\n\n')
