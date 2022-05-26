@@ -4,6 +4,7 @@ from sklearn.tree import DecisionTreeClassifier
 from sklearn.preprocessing import MinMaxScaler
 import numpy as np
 from sklearn.metrics import accuracy_score
+from sklearn.metrics import confusion_matrix
 from sklearn import tree
 from sklearn import metrics
 from sklearn.linear_model import LogisticRegression
@@ -31,43 +32,46 @@ def apply_linear_regression(x_train,y_train,x_test,y_test,file_name) :
 
     logreg.fit(x_train,y_train)
     print(logreg.coef_)
+    y_pred=logreg.predict(x_test)
+    logregCf = confusion_matrix(y_test, y_pred)
 
     fn = "MemoizedTrainResults/LR_" + file_name
     fn = fn.replace("csv","joblib")
     joblib.dump(logreg, fn)
     
-    y_pred=logreg.predict(x_test)
+    
 
-    return accuracy_score(y_test,y_pred)
+    return [accuracy_score(y_test,y_pred),logregCf]
 
 def apply_discession_tree(x_train,y_train,x_test,y_test,file_name) :
     dec_tree = DecisionTreeClassifier(
         random_state = constant_random_state ,max_features = int(math.log2(int(64/2))))
 
     dec_tree.fit(x_train,y_train)
-    r = export_text(dec_tree)
-    print(r)
+    y_pred = dec_tree.predict(x_test)
+    decTreeCf = confusion_matrix(y_test, y_pred)
 
-    print(dec_tree.feature_importances_)
     fn = "MemoizedTrainResults/DT_" + file_name
     fn = fn.replace("csv","joblib")
 
     joblib.dump(dec_tree, fn)
 
-    y_pred_en = dec_tree.predict(x_test)
-    return accuracy_score(y_test,y_pred_en)
+    
+    return [accuracy_score(y_test,y_pred),decTreeCf]
 
 def apply_svm_linear_kernel(x_train,y_train,x_test,y_test,file_name) :
 
     clf = svm.SVC()
     clf.fit(x_train, y_train)
+    y_pred = clf.predict(x_test)
+    svmCf= confusion_matrix(y_test, y_pred)
 
     fn = "MemoizedTrainResults/SVM_" + file_name
     fn = fn.replace("csv","joblib")
     joblib.dump(clf, fn)
-    y_pred = clf.predict(x_test)
+    
 
-    return (metrics.accuracy_score(y_test, y_pred))
+    return [(metrics.accuracy_score(y_test, y_pred)),svmCf]
 
 
 cleaned_data_list = os.listdir("cleanedData")
@@ -114,9 +118,9 @@ for file_name in cleaned_data_list :
     x_train = X_train_smote
     y_train = Y_train_smote
 
-    linear_regression_accuracy = apply_linear_regression(x_train,y_train,x_test,y_test,file_name)
-    discession_tree_accuracy = apply_discession_tree(x_train,y_train,x_test,y_test,file_name)
-    svm_linear_kernel_accuracy = apply_svm_linear_kernel(x_train,y_train,x_test,y_test,file_name)
+    linear_regression_accuracy = apply_linear_regression(x_train,y_train,x_test,y_test,file_name)[0]
+    discession_tree_accuracy = apply_discession_tree(x_train,y_train,x_test,y_test,file_name)[0]
+    svm_linear_kernel_accuracy = apply_svm_linear_kernel(x_train,y_train,x_test,y_test,file_name)[0]
 
     print(file_name)
     print("logistic regression : ",linear_regression_accuracy)
@@ -149,7 +153,7 @@ print("max svm after normalization : ",mx_svm_after_normalization)
 
 
 results = str(mx_linear_before_normalization) + ','+str(mx_linear_after_normalization) + '\n'
-results += str(mx_discession_tree_before_normalization) +','+ str(mx_discession_tree_after_normalization)
+results += str(mx_discession_tree_before_normalization) +','+ str(mx_discession_tree_after_normalization) + '\n'
 results += str(mx_svm_before_normalization) + ','+str(mx_svm_after_normalization) + '\n'
 file = open("results.txt",'w')
 file.write(results)
