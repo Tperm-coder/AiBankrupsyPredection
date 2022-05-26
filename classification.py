@@ -1,6 +1,8 @@
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.tree import DecisionTreeClassifier
+from sklearn.preprocessing import MinMaxScaler
+import numpy as np
 from sklearn.metrics import accuracy_score
 from sklearn import tree
 from sklearn import metrics
@@ -12,9 +14,11 @@ from imblearn.over_sampling import RandomOverSampler, SMOTE
 from imblearn.under_sampling import RandomUnderSampler, NearMiss
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
+from sklearn.tree import export_text
 from sklearn.metrics import classification_report
 from collections import Counter
 from sklearn import svm
+import math
 import joblib
 import pickle
 import os
@@ -23,37 +27,41 @@ constant_random_state = 42
 
 def apply_linear_regression(x_train,y_train,x_test,y_test,file_name) :
 
-    logreg = LogisticRegression(max_iter = 1000 ,solver='lbfgs')
+    logreg = LogisticRegression(max_iter = 3000 ,solver='lbfgs')
 
     logreg.fit(x_train,y_train)
+    print(logreg.coef_)
+
     fn = "MemoizedTrainResults/LR_" + file_name
     fn = fn.replace("csv","joblib")
     joblib.dump(logreg, fn)
     
     y_pred=logreg.predict(x_test)
 
-    return logreg.score(x_train,y_train)
+    return accuracy_score(y_test,y_pred)
 
 def apply_discession_tree(x_train,y_train,x_test,y_test,file_name) :
-    clf_entropy = DecisionTreeClassifier(
-        criterion = "entropy",
-        random_state = constant_random_state ,
-        max_depth = 3,
-        min_samples_leaf = 5)
+    dec_tree = DecisionTreeClassifier(
+        random_state = constant_random_state ,max_features = int(math.log2(int(64/2))))
 
-    clf_entropy.fit(x_train,y_train)
+    dec_tree.fit(x_train,y_train)
+    r = export_text(dec_tree)
+    print(r)
+
+    print(dec_tree.feature_importances_)
     fn = "MemoizedTrainResults/DT_" + file_name
     fn = fn.replace("csv","joblib")
 
-    joblib.dump(clf_entropy, fn)
+    joblib.dump(dec_tree, fn)
 
-    y_pred_en = clf_entropy.predict(x_test)
+    y_pred_en = dec_tree.predict(x_test)
     return accuracy_score(y_test,y_pred_en)
 
 def apply_svm_linear_kernel(x_train,y_train,x_test,y_test,file_name) :
 
-    clf = svm.SVC(kernel='linear')
+    clf = svm.SVC()
     clf.fit(x_train, y_train)
+
     fn = "MemoizedTrainResults/SVM_" + file_name
     fn = fn.replace("csv","joblib")
     joblib.dump(clf, fn)
@@ -101,6 +109,8 @@ for file_name in cleaned_data_list :
     # print(classification_report(y_test, ros_prediction))
     X_train_smote, Y_train_smote= smote.fit_resample(x_train, y_train)
 
+    
+
     x_train = X_train_smote
     y_train = Y_train_smote
 
@@ -109,7 +119,7 @@ for file_name in cleaned_data_list :
     svm_linear_kernel_accuracy = apply_svm_linear_kernel(x_train,y_train,x_test,y_test,file_name)
 
     print(file_name)
-    print("Linear regression : ",linear_regression_accuracy)
+    print("logistic regression : ",linear_regression_accuracy)
     print("DecisionTreeClassifier : ",discession_tree_accuracy)
     print("SVM kernel linear : ",svm_linear_kernel_accuracy)
     print('\n')
@@ -127,8 +137,8 @@ for file_name in cleaned_data_list :
     i += 1
 
 print("done classifing")
-print("max linear before normalization : ",mx_linear_before_normalization)
-print("max linear after normalization : ",mx_linear_after_normalization)
+print("max logistic before normalization : ",mx_linear_before_normalization)
+print("max logistic after normalization : ",mx_linear_after_normalization)
 print('\n')
 print("max discession tree before normalization : ",mx_discession_tree_before_normalization)
 print("max discession tree after normalization : ",mx_discession_tree_after_normalization)
@@ -139,8 +149,8 @@ print("max svm after normalization : ",mx_svm_after_normalization)
 
 
 results = str(mx_linear_before_normalization) + ','+str(mx_linear_after_normalization) + '\n'
-results += str(mx_svm_before_normalization) + ','+str(mx_svm_after_normalization) + '\n'
 results += str(mx_discession_tree_before_normalization) +','+ str(mx_discession_tree_after_normalization)
+results += str(mx_svm_before_normalization) + ','+str(mx_svm_after_normalization) + '\n'
 file = open("results.txt",'w')
 file.write(results)
 file.close()
