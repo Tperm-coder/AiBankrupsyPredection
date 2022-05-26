@@ -23,7 +23,7 @@ constant_random_state = 42
 
 def apply_linear_regression(x_train,y_train,x_test,y_test,file_name) :
 
-    logreg = LogisticRegression(max_iter = 3000)
+    logreg = LogisticRegression(max_iter = 1000 ,solver='lbfgs')
 
     logreg.fit(x_train,y_train)
     fn = "MemoizedTrainResults/LR_" + file_name
@@ -63,18 +63,30 @@ def apply_svm_linear_kernel(x_train,y_train,x_test,y_test,file_name) :
 
 
 cleaned_data_list = os.listdir("cleanedData")
+
+mx_linear_before_normalization = 0.0
+mx_linear_after_normalization = 0.0
+
+mx_discession_tree_before_normalization = 0.0
+mx_discession_tree_after_normalization = 0.0
+
+mx_svm_before_normalization = 0.0
+mx_svm_after_normalization = 0.0
+
+i = 1
 for file_name in cleaned_data_list :
     if file_name == "cleaned_data.csv" :
         continue
 
     df = pd.read_csv("cleanedData/"+file_name)
+    df['class'] = pd.to_numeric(df['class'])
 
+    X = df.drop('class',axis=1)    
     Y = df['class']
-    X = df.drop('class',axis=1)
 
-    for i in range(len(Y)) :
-        Y[i] = int(Y[i])
-
+    ss = StandardScaler()
+    df = pd.DataFrame(ss.fit_transform(df),columns = df.columns)
+    
     x_train, x_test, y_train, y_test = train_test_split(X, Y, test_size = 0.3 , random_state = constant_random_state)
 
     ros = RandomOverSampler(random_state=0)
@@ -92,10 +104,45 @@ for file_name in cleaned_data_list :
     x_train = X_train_smote
     y_train = Y_train_smote
 
+    linear_regression_accuracy = apply_linear_regression(x_train,y_train,x_test,y_test,file_name)
+    discession_tree_accuracy = apply_discession_tree(x_train,y_train,x_test,y_test,file_name)
+    svm_linear_kernel_accuracy = apply_svm_linear_kernel(x_train,y_train,x_test,y_test,file_name)
+
     print(file_name)
-    print("Linear regression : ",apply_linear_regression(x_train,y_train,x_test,y_test,file_name))
-    print("DecisionTreeClassifier : ",apply_discession_tree(x_train,y_train,x_test,y_test,file_name))
-    print("SVM kernel linear : ",apply_svm_linear_kernel(x_train,y_train,x_test,y_test,file_name))
+    print("Linear regression : ",linear_regression_accuracy)
+    print("DecisionTreeClassifier : ",discession_tree_accuracy)
+    print("SVM kernel linear : ",svm_linear_kernel_accuracy)
     print('\n')
+
+    if (i == 1) :
+        mx_linear_before_normalization = linear_regression_accuracy
+        mx_discession_tree_before_normalization = discession_tree_accuracy
+        mx_svm_before_normalization = svm_linear_kernel_accuracy
+    else :
+        mx_linear_after_normalization = linear_regression_accuracy
+        mx_discession_tree_after_normalization = discession_tree_accuracy
+        mx_svm_after_normalization = svm_linear_kernel_accuracy
+
+    
+    i += 1
+
+print("done classifing")
+print("max linear before normalization : ",mx_linear_before_normalization)
+print("max linear after normalization : ",mx_linear_after_normalization)
+print('\n')
+print("max discession tree before normalization : ",mx_discession_tree_before_normalization)
+print("max discession tree after normalization : ",mx_discession_tree_after_normalization)
+print('\n')
+print("max svm before normalization : ",mx_svm_before_normalization)
+print("max svm after normalization : ",mx_svm_after_normalization)
+
+
+
+results = str(mx_linear_before_normalization) + ','+str(mx_linear_after_normalization) + '\n'
+results += str(mx_svm_before_normalization) + ','+str(mx_svm_after_normalization) + '\n'
+results += str(mx_discession_tree_before_normalization) +','+ str(mx_discession_tree_after_normalization)
+file = open("results.txt",'w')
+file.write(results)
+file.close()
 
 input()

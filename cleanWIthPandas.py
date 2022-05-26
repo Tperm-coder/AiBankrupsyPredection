@@ -124,18 +124,18 @@ df = df.replace(r'?', "NaN")
 # saving the new data
 df.to_csv("cleanedData/cleaned_data.csv")
 
-methods = ["meidan","mean","linear_interpolation"]
+methods = ["mean"]
 for method in methods :
     cleanData(method,False)
 
 
-# Dropping columns with high count of undefined characters 
-df.drop(df.columns[[21, 37]], axis = 1, inplace = True)
+# # Dropping columns with high count of undefined characters 
+# df.drop(df.columns[[21, 37]], axis = 1, inplace = True)
 
-# saving the new data
-df.to_csv("cleanedData/cleaned_data.csv")
-for method in methods :
-    cleanData(method,True)
+# # saving the new data
+# df.to_csv("cleanedData/cleaned_data.csv")
+# for method in methods :
+#     cleanData(method,True)
 
 
 
