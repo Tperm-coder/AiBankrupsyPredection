@@ -112,7 +112,7 @@ for file_name in cleaned_data_list :
     x_train, x_test, y_train, y_test = train_test_split(X, Y, test_size = 0.3 , random_state = constant_random_state)
 
 
-#applying Synthetic Minority Oversampling Technique to solve imbalanced dataset problem 
+    #applying Synthetic Minority Oversampling Technique to solve imbalanced dataset problem 
     smote = SMOTE(random_state=constant_random_state)
     X_train_smote, Y_train_smote= smote.fit_resample(x_train, y_train)
 
