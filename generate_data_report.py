@@ -82,16 +82,16 @@ report_string += ("Number of 0s in the class : ") + str((zeros_count)) + '\n\n'
 report_string += ("Duplicated rows count is : " + str(duplicated_row)) + '\n'
 report_string += ("Percentage of duplicated_rows  : " + str((duplicated_row/len(data))*100) + ' %\n\n')
 
-report_string += ("Number of rows that have empty cells is  : " + str(rows_with_empty_cell_count)) + '\n'
-report_string += ("Percentage of rows that have empty cells is : " + str((rows_with_empty_cell_count/len(data))*100) +  " %") +'\n\n'
+report_string += ("Number of rows that have a value of '?' is  : " + str(rows_with_empty_cell_count)) + '\n'
+report_string += ("Percentage of rows that have a value of '?' is : " + str((rows_with_empty_cell_count/len(data))*100) +  " %") +'\n\n'
 
-report_string += ("Empty cell count is : " + str(empty_cells_count)) + '\n'
-report_string += ("Percentage of empty cells is : " + str((empty_cells_count/cells_count)*100) + " %") + '\n\n'
+report_string += ("Count of cells with the '?' value  : " + str(empty_cells_count)) + '\n'
+report_string += ("Percentage of cells with the '?' value : " + str((empty_cells_count/cells_count)*100) + " %") + '\n\n'
 
 report_string += ("Number of empty rows is  : " + str(empty_rows_count) + '\n\n')
 
 for w in sorted(map_col_empty_cells_count, key=map_col_empty_cells_count.get, reverse=True):
-    report_string += ("Col No. " + str(int(w) + 1) + " has " + str(map_col_empty_cells_count[int(w)]) + " empty cells") +'\n'
+    report_string += ("Col No. " + str(int(w) + 1) + " has " + str(map_col_empty_cells_count[int(w)]) + " a value of'?'") +'\n'
 
 file = open("DatasetReport.txt",'w')
 file.write(report_string)

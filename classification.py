@@ -111,17 +111,10 @@ for file_name in cleaned_data_list :
     
     x_train, x_test, y_train, y_test = train_test_split(X, Y, test_size = 0.3 , random_state = constant_random_state)
 
-    ros = RandomOverSampler(random_state=0)
-    X_train_ros, y_train_ros= ros.fit_resample(x_train, y_train)
 
-    rf = RandomForestClassifier()
-    ros_model = rf.fit(X_train_ros, y_train_ros)
-    ros_prediction = ros_model.predict(x_test)
-
+#applying Synthetic Minority Oversampling Technique to solve imbalanced dataset problem 
     smote = SMOTE(random_state=constant_random_state)
     X_train_smote, Y_train_smote= smote.fit_resample(x_train, y_train)
-
-    
 
     x_train = X_train_smote
     y_train = Y_train_smote
